@@ -3,8 +3,6 @@ using UnityEngine;
 public class BoneScript : MonoBehaviour
 {
     GameObject owner;
-    [SerializeField]
-    GameObject manager;
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
@@ -17,7 +15,7 @@ public class BoneScript : MonoBehaviour
     {
         if (collision.collider.CompareTag("ball"))
         {
-            manager.GetComponent<ManagerScript>().AddScore(20);
+            collision.gameObject.GetComponent<ManagerScript>().AddScore(20);
             gameObject.transform.parent.GetComponent<Animator>().SetTrigger("Breakoff");
 
             Invoke("death", 1f);

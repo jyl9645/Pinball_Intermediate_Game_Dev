@@ -21,9 +21,16 @@ public class HeartScript : MonoBehaviour
 
     void OnCollisionEnter2D(Collision2D collision)
     {
-        beatTime -= 0.1f;
-        GameObject blood = Instantiate(bloodPrefab);
-        blood.transform.position = gameObject.transform.position;
+        if (collision.collider.CompareTag("ball"))
+        {
+            collision.gameObject.GetComponent<ManagerScript>().AddScore(30);
+            beatTime -= 0.1f;
+            GameObject blood = Instantiate(bloodPrefab);
+            blood.transform.position = gameObject.transform.position;
+        }
+
+        
+        
     }
 
     public IEnumerator Beat(float time)

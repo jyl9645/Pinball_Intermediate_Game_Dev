@@ -18,11 +18,17 @@ public class LauncherScript : MonoBehaviour
     [SerializeField]
     float launchPower;
 
+    [SerializeField]
+    GameObject camera;
+
+    [SerializeField]
+    GameObject ball;
+
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
-        
+
     }
 
     // Update is called once per frame
@@ -40,6 +46,10 @@ public class LauncherScript : MonoBehaviour
         {
             rigidBody.AddForce(transform.up * launchPower);
             spring.distance = 3.11f;
+            ball.GetComponent<SoundScript>().PlayBurp();
+            StartCoroutine(camera.GetComponent<CameraScript>().CameraShake(2, 0.3f));
         }
     }
+    
+    
 }

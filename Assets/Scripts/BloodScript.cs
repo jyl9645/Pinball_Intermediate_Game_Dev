@@ -7,8 +7,6 @@ public class BloodScript : MonoBehaviour
 
     [SerializeField]
     float smooth;
-    [SerializeField]
-    GameObject manager;
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
@@ -26,7 +24,7 @@ public class BloodScript : MonoBehaviour
     {
         if (collision.CompareTag("ball"))
         {
-            manager.GetComponent<ManagerScript>().AddScore(10);
+            collision.gameObject.GetComponent<ManagerScript>().AddScore(10);
             Destroy(gameObject);
         }
     }

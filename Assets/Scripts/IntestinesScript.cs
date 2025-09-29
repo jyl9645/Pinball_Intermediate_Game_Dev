@@ -23,13 +23,14 @@ public class IntestinesScript : MonoBehaviour
 
     }
 
+    public IEnumerator ResetEntrance(float wait)
+    {
+        yield return new WaitForSeconds(wait);
+        otherEntrance.SetActive(true);
+    }
+
     public IEnumerator Teleport(float wait, Collider2D subject)
     {
-
-        void resetEntrance()
-        {
-            otherEntrance.SetActive(true);
-        }
 
         yield return new WaitForSeconds(wait);
 
@@ -40,10 +41,11 @@ public class IntestinesScript : MonoBehaviour
         subject.GetComponent<Rigidbody2D>().AddForce(transform.up * -1 * pushPower);
 
         subject.GetComponent<SpriteRenderer>().enabled = true;
+        subject.GetComponent<ManagerScript>().AddScore(40);
 
         StopAllCoroutines();
 
-        Invoke("resetEntrance", 2f);
+        StartCoroutine(ResetEntrance(2));
     }
 
     void OnTriggerEnter2D(Collider2D collision)
